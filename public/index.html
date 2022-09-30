@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Mini chat</title>
+</head>
+
+<body>
+
+    <div class="logo">
+        <img src="./assets/img/logo.svg" alt="blopez">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
+        integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const socket = io('http://localhost:8080');
+
+        //Escuchar mensaje del servidor
+        socket.on("current-bands", (bands) => {
+            console.log(bands);
+        });
+
+
+    </script>
+</body>
+
+</html>
