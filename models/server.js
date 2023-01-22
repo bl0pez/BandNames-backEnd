@@ -7,6 +7,7 @@ const path = require('path');
 const cors = require('cors');
 
 const Sockets = require('./sockets');
+const { dbConnection } = require('../db/dbConfig');
 
 
 class Server {
@@ -32,6 +33,11 @@ class Server {
 
     }
 
+    //Conectar base de datos
+    async dbConnection() {
+        await dbConnection();
+    }
+
     configSockets() {
         new Sockets(this.io);
     }
@@ -40,6 +46,9 @@ class Server {
 
         //Inicializar middlewares
         this.middlewares();
+
+        //Inicializar DB
+        this.dbConnection();
 
         //Inicializar sockets
         this.configSockets();
