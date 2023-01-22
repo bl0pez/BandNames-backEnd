@@ -3,6 +3,11 @@
 ## Description
  Lista nombre de bandas en donde puedes votar por tu banda favorita y se va mostrando en el grafico de barras los votos que tiene cada banda.
 
+## Stack
+ - NodeJS
+ - Express
+ - Socket.io
+
 ## Instalación
 1. Clonar el repositorio
 2. Instalar dependencias
