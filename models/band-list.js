@@ -1,45 +1,35 @@
-const Band = require("./band");
+const Band = require('./band');
 
 class BandList {
-    constructor() {
-        this.bands = [
-            new Band('Metallica'),
-            new Band('Bon Jovi'),
-            new Band('Queen'),
-            new Band('Héroes del Silencio'),
-        ];
+    constructor() {}
+
+    async addBand(name) {
+        const band = await Band.create({ name });   
+        return band;
     }
 
-    addBand(name) {
-        const newBand = new Band(name);
-        this.bands.push(newBand);
-        return this.bands;
+    async removeBand(id) {
+        const band = await Band.findById(id);
+        await band.delete();
     }
 
-    removeBand(id) {
-        this.bands = this.bands.filter(band => band.id !== id);
+    async getBands() {
+        
+        const bands = await Band.find();
+        return bands;
+
     }
 
-    getBands() {
-        return this.bands;
+    async increaseVotes(id) {
+        console.log(id);
+        const band = await Band.findById(id);
+        await band.incrementVotes();
     }
 
-    increaseVotes(id) {
-        this.bands = this.bands.map(band => {
-            if (band.id === id) {
-                band.votes += 1;
-            }
-            return band;
-        });
-    }
-
-    changeName(id, newName) {
-        this.bands = this.bands.map(band => {
-            if (band.id === id) {
-                band.name = newName;
-            }
-            return band;
-        });
+    async changeName(id, newName) {
+        const band = await Band.findById(id);
+        band.name = newName;
+        await band.save();
     }
 
 
